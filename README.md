@@ -6,6 +6,14 @@ Este directorio contiene una coleccion de graficos y tablas en HTML para analiza
 
 Los datos estan expresados en moneda homogenea, ajustados por inflacion con base sep-2025. El AXI fue realizado a traves del indice publicado por la FACPCE. Los indicadores de 2025 fueron calculados en base a los estados del primer semestre de 2025 y del tercer trimestre de 2025, es decir, para el periodo enero-septiembre, dado que el estado anual aun no se encuentra publicado. El conjunto busca mostrar el desempeno de la empresa en distintos frentes y comparar el periodo de pandemia con el de recesion posterior.
 
+## Sitio online
+
+El sitio está publicado en GitHub Pages:
+
+👉 **https://gabrielunm.github.io/Graficos_ARCOR_SAIC/**
+
+Cada `git push` a `main` actualiza el sitio automáticamente.
+
 ## Contenido
 
 - Rentabilidad: ROE, ROA, margen EBITDA y contraste entre margen neto y EBITDA.
