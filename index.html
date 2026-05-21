@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARCOR — Análisis Financiero 2019-2024</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Segoe UI',system-ui,-apple-system,sans-serif; background:#f5f7fa; color:#1a1a2e; }
+.hero { background:linear-gradient(135deg,#118EBF 0%,#1FBFAF 50%,#0d6b8c 100%); color:white; padding:48px 24px; text-align:center; position:relative; overflow:hidden; }
+.hero::after { content:''; position:absolute; bottom:-30px; left:0; right:0; height:60px; background:#f5f7fa; border-radius:50% 50% 0 0; }
+.hero h1 { font-size:2.2em; font-weight:700; margin-bottom:6px; letter-spacing:-0.5px; }
+.hero .sub { opacity:0.9; font-size:1em; margin-bottom:4px; }
+.hero .meta { opacity:0.7; font-size:0.8em; }
+.container { max-width:1200px; margin:0 auto; padding:10px 24px 40px; }
+.section-title { font-size:1.3em; color:#118EBF; margin:32px 0 16px; display:flex; align-items:center; gap:10px; }
+.section-title::after { content:''; flex:1; height:2px; background:linear-gradient(90deg,#E5F2C9,transparent); }
+.grid { display:flex; flex-wrap:wrap; gap:16px; justify-content:center; }
+.card { background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.06); transition:all 0.25s ease; border-left:3px solid #118EBF; display:flex; flex-direction:column; width:280px; max-width:100%; flex-shrink:0; }
+.card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,0.1); }
+.card-body { padding:16px; flex:1; display:flex; flex-direction:column; }
+.card h3 { font-size:0.95em; margin-bottom:6px; line-height:1.3; color:#118EBF; font-weight:600; }
+.card p { font-size:0.8em; color:#777; margin-bottom:8px; flex:1; }
+.tags { display:flex; gap:4px; flex-wrap:wrap; }
+.tag { display:inline-block; padding:3px 8px; border-radius:4px; font-size:0.65em; font-weight:600; letter-spacing:0.3px; }
+.tag-g { background:#E5F2C9; color:#2d6a4f; }
+.tag-t { background:#118EBF; color:white; }
+.card-rent { border-left-color:#118EBF; }
+.card-liq { border-left-color:#1FBFAF; }
+.card-end { border-left-color:#F29F05; }
+.card-act { border-left-color:#A4D996; }
+.card-tab { border-left-color:#888; }
+.cat-badge { display:inline-block; font-size:0.65em; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; color:#777; margin-bottom:4px; }
+.footer { text-align:center; padding:32px 24px; color:#999; font-size:0.78em; border-top:1px solid #eee; margin-top:40px; line-height:1.8; }
+.footer strong { color:#666; }
+@media (max-width:600px) { .hero h1 { font-size:1.5em; } }
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>ARCOR S.A.I.C.</h1>
+  <p class="sub">Análisis Financiero — Estados Consolidados 2019-2024</p>
+  <p class="meta">Datos en moneda homogénea (base sep-2025) · CNV · INDEC · Memorias Anuales · La Nación · Ámbito Financiero · El Cronista · FixSCR · Moody’s Local · BBVA</p>
+</div>
+<div class="container">
+<div class="section-title"><i data-lucide="trending-up" size="20"></i> Rentabilidad</div>
+<div class="grid">
+  <a href="01_rentabilidad.html" class="card card-rent" style="text-decoration:none;color:inherit;display:block;">
+    <div class="card-body">
+      <span class="cat-badge">RENTABILIDAD</span>
+      <h3>ROE, ROA, Margen EBITDA</h3>
+      <p>Evolucion comparativa con efecto apalancamiento y gaps sombreados.</p>
+      <div class="tags"><span class="tag tag-g">Gráfico</span></div>
+    </div>
+  </a>
+  <a href="02_paradoja_inflacionaria.html" class="card card-rent" style="text-decoration:none;color:inherit;display:block;">
+    <div class="card-body">
+      <span class="cat-badge">PARADOJA INFLACIONARIA</span>
+      <h3>Margen Neto vs EBITDA</h3>
+      <p>La distorsion contable por inflación.</p>
+      <div class="tags"><span class="tag tag-g">Gráfico</span></div>
+    </div>
+  </a>
+</div>
+<div class="section-title"><i data-lucide="droplets" size="20"></i> Liquidez</div>
+<div class="grid">
+  <a href="03_liquidez.html" class="card card-liq" style="text-decoration:none;color:inherit;display:block;">
+    <div class="card-body">
+      <span class="cat-badge">LIQUIDEZ</span>
+      <h3>Liquidez Corriente</h3>
+      <p>Liquidez y Prueba Acida con bandas de referencia ideales.</p>
+      <div class="tags"><span class="tag tag-g">Gráfico</span></div>
+    </div>
+  </a>
+  <a href="10_capital_inmovilizacion.html" class="card card-liq" style="text-decoration:none;color:inherit;display:block;">
+    <div class="card-body">
+      <span class="cat-badge">LIQUIDEZ</span>
+      <h3>Capital de Trabajo</h3>
+      <p>Margen de seguridad operativa con banda de riesgo de liquidez.</p>
+      <div class="tags"><span class="tag tag-g">Gráfico</span></div>
+    </div>
+  </a>
+</div>
+<div class="section-title"><i data-lucide="scale" size="20"></i> Endeudamiento</div>
+<div class="grid">
+  <a href="04_endeudamiento.html" class="card card-end" style="text-decoration:none;color:inherit;display:block;">
+    <div class="card-body">
+      <span class="cat-badge">ENDEUDAMIENTO</span>
+      <h3>Endeudamiento y Apalancamiento</h3>
+      <p>Pasivo/PN, Activo/PN, Endeudamiento LP y Solvencia.</p>
+      <div class="tags"><span class="tag tag-g">Gráfico</span></div>
+    </div>
+  </a>
+  <a href="05_desapalancamiento.html" class="card card-end" style="text-decoration:none;color:inherit;display:block;">
+    <div class="card-body">
+      <span class="cat-badge">DESAPALANCAMIENTO</span>
+      <h3>Desapalancamiento</h3>
+      <p>Deuda Neta/EBITDA y Endeudamiento CP.</p>
+      <div class="tags"><span class="tag tag-g">Gráfico</span></div>
+    </div>
+  </a>
+</div>
+<div class="section-title"><i data-lucide="bar-chart-3" size="20"></i> Actividad</div>
+<div class="grid">
+  <a href="06_actividad.html" class="card card-act" style="text-decoration:none;color:inherit;display:block;">
+    <div class="card-body">
+      <span class="cat-badge">ACTIVIDAD</span>
+      <h3>Nivel de Actividad</h3>
+      <p>Variacion % de Ventas y Utilidad Bruta con brecha sombreada.</p>
+      <div class="tags"><span class="tag tag-g">Gráfico</span></div>
+    </div>
+  </a>
+  <a href="07_arcor_vs_indec.html" class="card card-act" style="text-decoration:none;color:inherit;display:block;">
+    <div class="card-body">
+      <span class="cat-badge">ACTIVIDAD</span>
+      <h3>ARCOR vs INDEC</h3>
+      <p>Resiliencia frente al ciclo economico.</p>
+      <div class="tags"><span class="tag tag-g">Gráfico</span></div>
+    </div>
+  </a>
+  <a href="08_rotacion.html" class="card card-act" style="text-decoration:none;color:inherit;display:block;">
+    <div class="card-body">
+      <span class="cat-badge">ACTIVIDAD</span>
+      <h3>Rotacion</h3>
+      <p>Rotacion de Activos y Pasivos con linea de eficiencia minima.</p>
+      <div class="tags"><span class="tag tag-g">Gráfico</span></div>
+    </div>
+  </a>
+  <a href="11_flujo_efectivo.html" class="card card-act" style="text-decoration:none;color:inherit;display:block;">
+    <div class="card-body">
+      <span class="cat-badge">ACTIVIDAD</span>
+      <h3>Flujo de Efectivo</h3>
+      <p>Waterfall operación-inversión-financiación por año.</p>
+      <div class="tags"><span class="tag tag-g">Gráfico</span></div>
+    </div>
+  </a>
+</div>
+<div class="section-title"><i data-lucide="layout-dashboard" size="20"></i> Tablas</div>
+<div class="grid">
+  <a href="t01_resumen_indicadores.html" class="card card-tab" style="text-decoration:none;color:inherit;display:block;">
+    <div class="card-body">
+      <span class="cat-badge">TABLAS</span>
+      <h3>Resumen de Indicadores</h3>
+      <p>Todos los indicadores año por año en tabla.</p>
+      <div class="tags"><span class="tag tag-t">Tabla</span></div>
+    </div>
+  </a>
+  <a href="t02_pandemia_vs_recesion.html" class="card card-tab" style="text-decoration:none;color:inherit;display:block;">
+    <div class="card-body">
+      <span class="cat-badge">TABLAS</span>
+      <h3>Pandemia vs Recesion</h3>
+      <p>Comparacion 2019-2021 vs 2022-2024.</p>
+      <div class="tags"><span class="tag tag-t">Tabla</span></div>
+    </div>
+  </a>
+</div>
+</div>
+<div class="footer">
+  <strong>ARCOR S.A.I.C.</strong> — Análisis Financiero · Estados Consolidados NIIF 2019-2024<br>
+  Datos en moneda homogénea · Ajustados por inflación - Índices FACPCE (base sep-2025)<br>
+  Fuentes: CNV · INDEC · Memorias Anuales · La Nación · Ámbito Financiero · El Cronista · FixSCR · Moody’s Local · BBVA<br>
+  <strong>Pandemia</strong> (fondo verde) 2019-2021 · <strong>Recesión</strong> (fondo naranja) 2022-2024
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>
