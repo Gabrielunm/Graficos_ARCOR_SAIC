@@ -93,15 +93,58 @@ h2::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,#118EBF,
     <th>Año</th>
     <th>PPyE (millones)<br><small>Propiedades, Planta y Equipo</small></th>
     <th>Resultado Neto (millones)<br><small>Ganancia / Pérdida del ejercicio</small></th>
+    <th style="width:60px">Tendencia</th>
   </tr>
-  <tr><td>2019</td><td>1.196.950</td><td style="color:#c62828">-4.770</td></tr>
-  <tr><td>2020</td><td>1.151.286</td><td style="color:#2e7d32">132.337</td></tr>
-  <tr><td>2021</td><td>1.112.784</td><td style="color:#2e7d32">320.909</td></tr>
-  <tr><td>2022</td><td>1.068.670</td><td style="color:#2e7d32">292.629</td></tr>
-  <tr><td>2023</td><td style="color:#c62828">1.190.756</td><td style="color:#e65100">69.193</td></tr>
-  <tr><td>2024</td><td style="color:#2e7d32">1.062.981</td><td style="color:#2e7d32">376.809</td></tr>
+  <tr>
+    <td>2019</td>
+    <td style="color:#c62828;font-weight:600">1.196.950</td>
+    <td style="color:#c62828;font-weight:600">-4.770</td>
+    <td style="font-size:1.2em">⬇️</td>
+  </tr>
+  <tr>
+    <td>2020</td>
+    <td style="color:#e65100">1.151.286</td>
+    <td style="color:#2e7d32;font-weight:600">132.337</td>
+    <td style="font-size:1.2em">↗️</td>
+  </tr>
+  <tr>
+    <td>2021</td>
+    <td style="color:#2e7d32">1.112.784</td>
+    <td style="color:#1b5e20;font-weight:700">320.909</td>
+    <td style="font-size:1.2em">⬆️</td>
+  </tr>
+  <tr>
+    <td>2022</td>
+    <td style="color:#2e7d32;font-weight:600">1.068.670</td>
+    <td style="color:#2e7d32;font-weight:600">292.629</td>
+    <td style="font-size:1.2em">⬆️</td>
+  </tr>
+  <tr>
+    <td style="font-weight:700">2023</td>
+    <td style="color:#b71c1c;font-weight:700;background:rgba(198,40,40,0.08)">1.190.756</td>
+    <td style="color:#e65100;font-weight:600;background:rgba(198,40,40,0.08)">69.193</td>
+    <td style="font-size:1.2em">⬇️⬇️</td>
+  </tr>
+  <tr>
+    <td>2024</td>
+    <td style="color:#2e7d32;font-weight:600">1.062.981</td>
+    <td style="color:#1b5e20;font-weight:700">376.809</td>
+    <td style="font-size:1.2em">⬆️⬆️</td>
+  </tr>
 </table>
 
+<div style="display:flex;justify-content:center;gap:24px;margin:12px 0 4px;font-size:.78em;flex-wrap:wrap">
+  <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#c62828;margin-right:4px;vertical-align:middle"></span> PPyE alto / Resultado negativo</span>
+  <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#e65100;margin-right:4px;vertical-align:middle"></span> PPyE medio-alto / Resultado bajo</span>
+  <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#2e7d32;margin-right:4px;vertical-align:middle"></span> PPyE bajo / Resultado positivo</span>
+  <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#1b5e20;margin-right:4px;vertical-align:middle"></span> Resultado máximo</span>
+</div>
+<div class="highlight" style="text-align:center;margin-bottom:4px;padding:10px">
+  <strong>📌 Patrón visual:</strong> Cuando las celdas de PPyE están <span style="color:#c62828;font-weight:600">rojas</span> (muchos activos fijos),
+  las de Resultado están <span style="color:#e65100;font-weight:600">naranjas</span> o <span style="color:#c62828;font-weight:600">rojas</span>
+  (baja ganancia). Y viceversa: PPyE <span style="color:#2e7d32;font-weight:600">verde</span> → Resultado <span style="color:#2e7d32;font-weight:600">verde</span>.
+  La correlación inversa se ve <strong>a simple vista</strong>.
+</div>
 <p style="text-align:center;font-size:.85em;color:#888;margin-top:8px">
   Fuente: Balances consolidados ARCOR, expresados en moneda homogénea (base sep-2025). Valores en millones de pesos constantes.
 </p>
