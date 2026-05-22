@@ -3,330 +3,78 @@
 <style>
 :root{color-scheme:light dark}
 body{background:#f5f7fa;color:#1a1a2e;font-family:Segoe UI,system-ui,-apple-system,sans-serif;margin:0;padding:0}
-@media(prefers-color-scheme:dark){body{background:#1a1a2e;color:#e0e0e0}.card,.card2,.data-table{background:#252540!important;color:#e0e0e0!important}.data-table td,.data-table th{border-color:#3a3a55!important}.data-table th{background:#1a2744!important}.formula-box{background:#1a2744!important;border-color:#118EBF!important}h2{color:#118EBF!important}.step-num{background:#118EBF!important}.highlight{background:#1a3a2a!important;border-left-color:#1FBFAF!important}}
-.nav{background:linear-gradient(135deg,#118EBF,#1FBFAF);padding:8px 20px;display:flex;justify-content:space-between;align-items:center}
-.nav a{color:#fff;text-decoration:none;font-weight:600;font-size:.9em}
-.nav span{color:#fff;font-weight:600;font-size:.85em;letter-spacing:.5px;opacity:.9}
-.container{max-width:900px;margin:0 auto;padding:20px 24px 40px}
-h1{font-size:1.8em;color:#118EBF;margin:24px 0 8px}
-h2{font-size:1.3em;color:#118EBF;margin:28px 0 12px;display:flex;align-items:center;gap:8px}
-h2::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,#118EBF,transparent)}
-.card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin:16px 0;line-height:1.7}
-.card2{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin:16px 0}
-.intro{font-size:1.05em;line-height:1.8;color:#555}
-@media(prefers-color-scheme:dark){.intro{color:#bbb}}
-.highlight{background:#e8f5e9;border-left:4px solid #1FBFAF;padding:16px 20px;border-radius:4px;margin:16px 0}
-.formula-box{background:#f0f4f8;border:2px solid #118EBF;border-radius:8px;padding:16px 20px;margin:12px 0;text-align:center;font-size:1.1em}
-.data-table{width:100%;border-collapse:collapse;margin:12px 0;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.data-table th{background:#118EBF;color:#fff;padding:10px 14px;font-size:.85em;text-align:center}
-.data-table td{padding:8px 14px;text-align:center;border-bottom:1px solid #eef1f5;font-size:.9em}
-.data-table tr:last-child td{border-bottom:none}
-.step-num{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#118EBF;color:#fff;align-items:center;justify-content:center;font-weight:700;font-size:.85em;margin-right:8px;flex-shrink:0}
-.r-big{font-size:2.2em;font-weight:700;color:#118EBF;text-align:center;margin:8px 0}
-.r-big .r-val{font-size:1.5em}
-.r-label{text-align:center;font-size:.85em;color:#888}
-@media(prefers-color-scheme:dark){.r-label{color:#999}}
-.strength{display:flex;justify-content:center;gap:24px;margin:16px 0;flex-wrap:wrap}
-.strength-item{text-align:center;padding:12px 20px;border-radius:8px;min-width:100px}
-.strength-item .label{font-size:.75em;color:#888;margin-bottom:4px}
-.strength-item .value{font-size:1.5em;font-weight:700}
-.strong-neg{background:#ffebee;color:#c62828}
-.strong-pos{background:#e8f5e9;color:#2e7d32}
-.perfect{background:#fff3e0;color:#e65100}
-.plot-container{margin:20px 0;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08)}
-.footer{text-align:center;padding:24px;color:#999;font-size:.78em;border-top:1px solid #eee;margin-top:20px}
+@media(prefers-color-scheme:dark){body{background:#1a1a2e;color:#e0e0e0}}
 </style>
 </head>
 <body>
 
-<div class="nav">
-  <a href="index.html">&larr; Inicio</a>
-  <span>CORRELACIÓN INVERSIÓN-RESULTADO</span>
-  <a href="t01_resumen_indicadores.html">Tablas &rarr;</a>
+<div style="background:linear-gradient(135deg,#118EBF,#1FBFAF);padding:8px 20px;font-family:Segoe UI,Arial,sans-serif;display:flex;justify-content:space-between;align-items:center;">
+  <a href="index.html" style="color:white;text-decoration:none;font-weight:600;font-size:0.85em;">&larr; Inicio</a>
+  <span style="color:white;font-weight:600;font-size:0.85em;letter-spacing:0.5px;opacity:0.9;">CORRELACIÓN INVERSA</span>
+  <a href="t01_resumen_indicadores.html" style="color:white;text-decoration:none;font-weight:600;font-size:0.9em;">Siguiente &rarr;</a>
 </div>
 
-<div class="container">
+<div>
+  <script src="https://cdn.plot.ly/plotly-3.5.0.min.js" charset="utf-8"></script>
+  <div id="scatter-plot" style="height:460px; width:100%;"></div>
+  <script>
+    var ppye = [1196950, 1151286, 1112784, 1068670, 1190756, 1062981];
+    var resultado = [-4770, 132337, 320909, 292629, 69193, 376809];
+    var years = ['2019', '2020', '2021', '2022', '2023', '2024'];
+    var trendX = [1000000, 1250000];
+    var trendY = trendX.map(x => -2.486409 * x + 3008913);
 
-<h1>Correlación entre Inversión en Activos Fijos y Resultado Neto</h1>
-<p class="intro">
-¿Por qué Arcor invierte <strong>más</strong> cuando los resultados empeoran? Esta página explora la relación estadística entre la inversión en propiedades, planta y equipo (PPyE) y el resultado neto de la compañía entre 2019 y 2024.
-</p>
-
-<!-- ===================== SECTION 1: WHAT IS PEARSON ===================== -->
-<h2>¿Qué es la correlación de Pearson?</h2>
-
-<div class="card">
-<p>Imaginá que tenés dos variables — por ejemplo, <strong>horas de estudio</strong> y <strong>notas en un examen</strong>. Si juntás datos de varios estudiantes, probablemente veas que a <em>más horas estudiadas, mejores notas</em>. La <strong>correlación de Pearson (r)</strong> es un número que mide <em>qué tan fuerte</em> es esa relación lineal.</p>
-
-<div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:20px 0">
-  <div style="text-align:center;padding:16px;background:#e8f5e9;border-radius:8px;flex:1;min-width:140px">
-    <div style="font-size:2.2em;font-weight:700;color:#2e7d32">r ≈ +1</div>
-    <div style="font-size:.8em;color:#555">Correlación <strong>positiva</strong><br>una variable sube, la otra también</div>
-  </div>
-  <div style="text-align:center;padding:16px;background:#f5f5f5;border-radius:8px;flex:1;min-width:140px">
-    <div style="font-size:2.2em;font-weight:700;color:#666">r ≈ 0</div>
-    <div style="font-size:.8em;color:#555">Sin correlación<br>no hay relación lineal</div>
-  </div>
-  <div style="text-align:center;padding:16px;background:#ffebee;border-radius:8px;flex:1;min-width:140px">
-    <div style="font-size:2.2em;font-weight:700;color:#c62828">r ≈ -1</div>
-    <div style="font-size:.8em;color:#555">Correlación <strong>negativa</strong><br>una sube, la otra baja</div>
-  </div>
-</div>
-
-<p>Ejemplos concretos:</p>
-<ul style="line-height:2">
-  <li><strong>r ≈ +0,9</strong>: temperatura y ventas de helado — hace calor, se vende más helado.</li>
-  <li><strong>r ≈ -0,9</strong>: velocidad y tiempo de viaje — más velocidad, menos tiempo.</li>
-  <li><strong>r ≈ 0</strong>: altura de una persona y su número de calzado — <em>casi</em> no hay relación... aunque en la práctica algo hay.</li>
-</ul>
-
-<p>El valor de <strong>r</strong> va de <strong>-1</strong> (correlación negativa perfecta) a <strong>+1</strong> (correlación positiva perfecta). Mientras más cerca de ±1, más fuerte es la relación.</p>
-</div>
-
-<!-- ===================== SECTION 2: THE DATA ===================== -->
-<h2>Los datos: PPyE vs Resultado Neto</h2>
-
-<div class="card2">
-
-<table class="data-table">
-  <tr>
-    <th>Año</th>
-    <th>PPyE (millones)<br><small>Propiedades, Planta y Equipo</small></th>
-    <th>Resultado Neto (millones)<br><small>Ganancia / Pérdida del ejercicio</small></th>
-    <th style="width:60px">Tendencia</th>
-  </tr>
-  <tr>
-    <td>2019</td>
-    <td style="color:#c62828;font-weight:600">1.196.950</td>
-    <td style="color:#c62828;font-weight:600">-4.770</td>
-    <td style="font-size:1.2em">⬇️</td>
-  </tr>
-  <tr>
-    <td>2020</td>
-    <td style="color:#e65100">1.151.286</td>
-    <td style="color:#2e7d32;font-weight:600">132.337</td>
-    <td style="font-size:1.2em">↗️</td>
-  </tr>
-  <tr>
-    <td>2021</td>
-    <td style="color:#2e7d32">1.112.784</td>
-    <td style="color:#1b5e20;font-weight:700">320.909</td>
-    <td style="font-size:1.2em">⬆️</td>
-  </tr>
-  <tr>
-    <td>2022</td>
-    <td style="color:#2e7d32;font-weight:600">1.068.670</td>
-    <td style="color:#2e7d32;font-weight:600">292.629</td>
-    <td style="font-size:1.2em">⬆️</td>
-  </tr>
-  <tr>
-    <td style="font-weight:700">2023</td>
-    <td style="color:#b71c1c;font-weight:700;background:rgba(198,40,40,0.08)">1.190.756</td>
-    <td style="color:#e65100;font-weight:600;background:rgba(198,40,40,0.08)">69.193</td>
-    <td style="font-size:1.2em">⬇️⬇️</td>
-  </tr>
-  <tr>
-    <td>2024</td>
-    <td style="color:#2e7d32;font-weight:600">1.062.981</td>
-    <td style="color:#1b5e20;font-weight:700">376.809</td>
-    <td style="font-size:1.2em">⬆️⬆️</td>
-  </tr>
-</table>
-
-<div style="display:flex;justify-content:center;gap:24px;margin:12px 0 4px;font-size:.78em;flex-wrap:wrap">
-  <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#c62828;margin-right:4px;vertical-align:middle"></span> PPyE alto / Resultado negativo</span>
-  <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#e65100;margin-right:4px;vertical-align:middle"></span> PPyE medio-alto / Resultado bajo</span>
-  <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#2e7d32;margin-right:4px;vertical-align:middle"></span> PPyE bajo / Resultado positivo</span>
-  <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#1b5e20;margin-right:4px;vertical-align:middle"></span> Resultado máximo</span>
-</div>
-<div class="highlight" style="text-align:center;margin-bottom:4px;padding:10px">
-  <strong>📌 Patrón visual:</strong> Cuando las celdas de PPyE están <span style="color:#c62828;font-weight:600">rojas</span> (muchos activos fijos),
-  las de Resultado están <span style="color:#e65100;font-weight:600">naranjas</span> o <span style="color:#c62828;font-weight:600">rojas</span>
-  (baja ganancia). Y viceversa: PPyE <span style="color:#2e7d32;font-weight:600">verde</span> → Resultado <span style="color:#2e7d32;font-weight:600">verde</span>.
-  La correlación inversa se ve <strong>a simple vista</strong>.
-</div>
-<p style="text-align:center;font-size:.85em;color:#888;margin-top:8px">
-  Fuente: Balances consolidados ARCOR, expresados en moneda homogénea (base sep-2025). Valores en millones de pesos constantes.
-</p>
-</div>
-
-<!-- ===================== SECTION 3: HOW WE CALCULATE ===================== -->
-<h2>Paso a paso del cálculo</h2>
-
-<div class="card">
-<p>El coeficiente de Pearson se calcula con esta fórmula (no te asustes, la desglosamos):</p>
-
-<div class="formula-box">
-  <strong>r</strong> = <span style="font-size:1.3em">∑(xᵢ - x̄)(yᵢ - ȳ)</span> / <span style="font-size:1.3em">√[∑(xᵢ - x̄)² · ∑(yᵢ - ȳ)²]</span>
-</div>
-
-<p>Donde <strong>x</strong> es PPyE, <strong>y</strong> es Resultado Neto, <strong>x̄</strong> y <strong>ȳ</strong> son sus promedios, y ∑ significa "sumatoria".</p>
-
-<p style="margin-top:16px"><strong>En criollo:</strong></p>
-<ol style="line-height:2.2">
-  <li><span class="step-num">1</span> Calculamos el <strong>promedio</strong> de PPyE y de Resultado.</li>
-  <li><span class="step-num">2</span> Calculamos cuánto se <strong>desvía</strong> cada año de su promedio.</li>
-  <li><span class="step-num">3</span> Multiplicamos esas desviaciones y las <strong>sumamos</strong> (nos da negativo porque van en direcciones opuestas).</li>
-  <li><span class="step-num">4</span> Dividimos por el producto de las <strong>desviaciones típicas</strong> (para que el resultado quede entre -1 y +1).</li>
-</ol>
-</div>
-
-<!-- ===================== SECTION 4: RESULT ===================== -->
-<h2>El resultado</h2>
-
-<div class="card" style="text-align:center">
-  <div style="font-size:.9em;color:#888;margin-bottom:4px">Coeficiente de correlación de Pearson</div>
-  <div class="r-big">
-    r = <span class="r-val" style="color:#c62828">-0.95</span>
-  </div>
-  <div style="font-size:.85em;color:#888;margin-bottom:16px">
-    (r² = 0.90 — el 90% de la variación del Resultado se explica por su relación con PPyE)
-  </div>
-
-  <div class="strength">
-    <div class="strength-item perfect">
-      <div class="label">Relación</div>
-      <div class="value">Negativa muy fuerte</div>
-    </div>
-    <div class="strength-item strong-neg">
-      <div class="label">Dirección</div>
-      <div class="value">Inversa</div>
-    </div>
-    <div class="strength-item strong-pos">
-      <div class="label">Poder explicativo</div>
-      <div class="value">r² = 89,9%</div>
-    </div>
-  </div>
-
-  <div class="highlight" style="text-align:left">
-    <strong>¿Qué significa este número?</strong><br>
-    Cuando el PPyE <strong>sube</strong> (Arcor invierte en más plantas y equipos), el Resultado Neto <strong>baja</strong>. Y cuando el PPyE <strong>baja</strong> (se deprecia más de lo que se invierte), el Resultado Neto <strong>sube</strong>.<br><br>
-    Esto NO significa que la inversión sea mala. Al contrario: necesitás invertir para crecer, pero la inversión <em>deprime el resultado contable en el corto plazo</em> por el aumento de amortizaciones y costos financieros.
-  </div>
-</div>
-
-<!-- ===================== SECTION 5: SCATTER PLOT ===================== -->
-<h2>Visualización: Scatter Plot</h2>
-
-<div class="card2">
-<p style="margin-top:0;color:#666">Cada punto es un año. La línea roja muestra la tendencia: a menor PPyE (menos activos fijos acumulados), mayor resultado neto.</p>
-<div class="plot-container" id="scatter-plot" style="height:480px"></div>
-</div>
-
-<!-- ===================== SECTION 6: INTERPRETATION ===================== -->
-<h2>Interpretación para el análisis de Arcor</h2>
-
-<div class="card">
-<p>Esta correlación negativa del <strong>-95%</strong> entre PPyE y Resultado Neto refleja la <strong>paradoja de la inversión en contexto inflacionario</strong>:</p>
-
-<ul style="line-height:2">
-  <li><strong>2021</strong>: PPyE en baja (1.112.784), Resultado pico (<span style="color:#2e7d32">+320.909</span>). La empresa "cosecha" sin invertir, y el resultado financiero inflacionario (RECPAM) dispara la ganancia contable.</li>
-  <li><strong>2023</strong>: PPyE sube a 1.190.756, Resultado se desploma a 69.193. Arcor acelera inversiones (adquisición de Sayon en Perú, bon o bon en México, filial en Dubai) justo cuando la recesión golpea. El resultado operativo sufre pero la estrategia es <strong>contracíclica</strong>: invertir cuando los activos están más baratos.</li>
-  <li><strong>2024</strong>: PPyE cae a 1.062.981 (se deprecia más de lo que se invierte), Resultado rebota a <span style="color:#2e7d32">+376.809</span> (máximo del período). El efecto financiero positivo (inflación licúa pasivos) y la menor base de activos fijos amortizables liberan resultado.</li>
-</ul>
-
-<div class="highlight">
-  <strong>Conclusión para la tesis de inversión:</strong><br>
-  Arcor muestra un comportamiento <strong>contracíclico</strong> en sus inversiones: acelera el Capex durante las recesiones (2023-2024) y lo modera durante los picos de ganancia (2021). Esta estrategia, documentada por las calificadoras (FixSCR, Moody's), busca capturar oportunidades de crecimiento a largo plazo cuando los costos de construcción y adquisición son más bajos. El resultado neto sufre en el corto plazo, pero la empresa construye capacidad productiva para el próximo ciclo económico.
-</div>
-</div>
-
-</div>
-
-<div class="footer">
-  <strong>ARCOR S.A.I.C.</strong> — Análisis Financiero 2019-2024 — Datos en moneda homogénea (base sep-2025)
-</div>
-
-<script src="https://cdn.plot.ly/plotly-3.5.0.min.js" charset="utf-8"></script>
-<script>
-var ppye = [1196950, 1151286, 1112784, 1068670, 1190756, 1062981];
-var resultado = [-4770, 132337, 320909, 292629, 69193, 376809];
-var years = ['2019', '2020', '2021', '2022', '2023', '2024'];
-
-// Trend line: y = -2.486409x + 3008913
-var trendX = [1000000, 1250000];
-var trendY = trendX.map(x => -2.486409 * x + 3008913);
-
-var data = [
-  {
-    x: ppye,
-    y: resultado,
-    mode: 'markers+text',
-    type: 'scatter',
-    marker: {
-      size: 14,
-      color: ['#999', '#118EBF', '#1FBFAF', '#F29F05', '#c62828', '#2e7d32'],
-      line: {color: '#fff', width: 2}
+    Plotly.newPlot("scatter-plot", [
+      {
+        x: ppye, y: resultado, mode: 'markers+text', type: 'scatter',
+        marker: {size: 14, color: ['#F29F05','#118EBF','#1FBFAF','#A4D996','#c62828','#2e7d32'], line: {color:'#fff',width:2}},
+        text: years, textposition: 'top center', textfont: {size: 11, color: '#555'},
+        hovertemplate: '%{text}<br>PPyE: %{x:,.0f}<br>Resultado: %{y:+,.0f}<extra></extra>',
+        name: 'Año'
+      },
+      {
+        x: trendX, y: trendY, mode: 'lines', type: 'scatter',
+        line: {color: '#c62828', width: 2, dash: 'dash'},
+        name: 'Tendencia (r = -0.95)'
+      }
+    ],
+    {
+      font: {family: 'Segoe UI, Arial', size: 12},
+      hovermode: 'closest',
+      paper_bgcolor: 'white', plot_bgcolor: '#f8f9fb',
+      title: {
+        text: 'PPyE vs Resultado Neto — Correlación r = -0.95<br>' +
+              '<sup style="font-size:12px;color:#666">Cada punto = un año. Línea punteada = tendencia.</sup>',
+        font: {size: 16}
+      },
+      xaxis: {
+        title: {text: 'PPyE (Propiedades, Planta y Equipo) — millones $'},
+        gridcolor: '#EBF0F8', zerolinecolor: '#EBF0F8'
+      },
+      yaxis: {
+        title: {text: 'Resultado Neto — millones $'},
+        gridcolor: '#EBF0F8', zerolinecolor: '#EBF0F8'
+      },
+      margin: {l: 60, r: 30, t: 80, b: 60},
+      annotations: [
+        {x: 1190756, y: 69193, text: '2023: Inversión récord,<br>resultado mínimo',
+         showarrow: true, arrowhead: 2, ax: 80, ay: -70,
+         bgcolor: 'white', bordercolor: '#c62828', borderwidth: 1.5,
+         font: {size: 11, color: '#c62828'}},
+        {x: 1112784, y: 320909, text: '2021: Menor inversión,<br>máxima ganancia',
+         showarrow: true, arrowhead: 2, ax: -80, ay: 40,
+         bgcolor: 'white', bordercolor: '#1FBFAF', borderwidth: 1.5,
+         font: {size: 11, color: '#118EBF'}}
+      ]
     },
-    text: years,
-    textposition: 'top center',
-    textfont: {size: 11, color: '#555'},
-    hovertemplate: '%{text}<br>PPyE: %{x:,.0f}<br>Resultado: %{y:+,.0f}<extra></extra>',
-    name: 'Años'
-  },
-  {
-    x: trendX,
-    y: trendY,
-    mode: 'lines',
-    type: 'scatter',
-    line: {color: '#c62828', width: 2, dash: 'dash'},
-    name: 'Tendencia (r = -0.95)',
-    hoverinfo: 'none'
-  }
-];
+    {responsive: true, displayModeBar: true, displaylogo: false});
+  </script>
+</div>
 
-var layout = {
-  title: {
-    text: 'PPyE vs Resultado Neto — Correlación r = -0.95<br>' +
-          '<sup style="font-size:12px;color:#666">Cada punto representa un año. La línea punteada muestra la tendencia lineal.</sup>',
-    font: {family: 'Segoe UI, Arial', size: 16}
-  },
-  xaxis: {
-    title: {text: 'PPyE (Propiedades, Planta y Equipo) — millones $'},
-    gridcolor: '#eee',
-    zerolinecolor: '#ddd'
-  },
-  yaxis: {
-    title: {text: 'Resultado Neto — millones $'},
-    gridcolor: '#eee',
-    zerolinecolor: '#ddd'
-  },
-  hovermode: 'closest',
-  font: {family: 'Segoe UI, Arial', size: 12},
-  paper_bgcolor: 'rgba(0,0,0,0)',
-  plot_bgcolor: 'rgba(0,0,0,0)',
-  margin: {l: 60, r: 30, t: 80, b: 60},
-  shapes: [
-    // Background zone labels
-    {type: 'rect', x0: 1050000, x1: 1250000, y0: 200000, y1: 400000,
-     fillcolor: 'rgba(31,191,175,0.06)', layer: 'below', line: {width: 0}},
-    {type: 'rect', x0: 1050000, x1: 1250000, y0: -50000, y1: 100000,
-     fillcolor: 'rgba(198,40,40,0.06)', layer: 'below', line: {width: 0}},
-    {type: 'line', x0: 1130571, x1: 1130571, y0: -50000, y1: 400000,
-     line: {color: '#118EBF', width: 1, dash: 'dot'}, opacity: 0.4},
-    {type: 'line', x0: 1050000, x1: 1250000, y0: 197851, y1: 197851,
-     line: {color: '#118EBF', width: 1, dash: 'dot'}, opacity: 0.4}
-  ],
-  annotations: [
-    {x: 1130571, y: 410000, text: 'x̄ (media PPyE)', showarrow: false,
-     font: {size: 10, color: '#118EBF'}, xanchor: 'center'},
-    {x: 1240000, y: 197851, text: 'ȳ (media Resultado)', showarrow: false,
-     font: {size: 10, color: '#118EBF'}, xanchor: 'left'},
-    // Annotations for key years
-    {x: 1190756, y: 69193, text: '2023: Inversión récord,<br>resultado mínimo',
-     showarrow: true, arrowhead: 2, ax: 60, ay: -60,
-     bgcolor: 'rgba(255,255,255,0.9)', bordercolor: '#c62828', borderwidth: 1,
-     font: {size: 10, color: '#c62828'}},
-    {x: 1112784, y: 320909, text: '2021: Menor inversión,<br>máxima ganancia',
-     showarrow: true, arrowhead: 2, ax: -70, ay: 40,
-     bgcolor: 'rgba(255,255,255,0.9)', bordercolor: '#1FBFAF', borderwidth: 1,
-     font: {size: 10, color: '#1FBFAF'}}
-  ]
-};
-
-var config = {responsive: true, displayModeBar: false, displaylogo: false};
-Plotly.newPlot('scatter-plot', data, layout, config);
-</script>
+<div style="max-width:1000px;margin:5px auto 20px;padding:16px 24px;background:#f8f9fb;border-left:4px solid #118EBF;border-radius:4px;font-family:Segoe UI,Arial,sans-serif;font-size:15px;color:#444;line-height:1.7;">
+  <b>Correlación de Pearson (r) = -0.95</b> entre PPyE y Resultado Neto. Cuando Arcor invierte <b>más</b> en activos fijos (PPyE alto), el resultado neto <b>baja</b> — y viceversa. <b>r² = 0,90</b>: el 90% de la variación del resultado se explica por esta relación inversa.<br><br>
+  <b>¿Counter-intuitivo?</b> Arcor acelera inversiones <b>en recesión</b> (2023: adquiere Sayon Perú, bon o bon México, filial Dubai, Capex récord de $304M) justo cuando la ganancia se desploma. Es una <b>estrategia contracíclica</b> documentada por FixSCR y Moody's: aprovechar costos de construcción más bajos para expandir capacidad, aceptando menor resultado de corto plazo.
+</div>
 
 </body>
 </html>
