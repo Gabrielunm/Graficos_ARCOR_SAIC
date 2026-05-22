@@ -17,7 +17,7 @@ Cada `git push` a `main` actualiza el sitio automáticamente.
 ## Contenido
 
 - Rentabilidad: ROE, ROA, margen EBITDA y contraste entre margen neto y EBITDA.
-- Liquidez: liquidez corriente, prueba acida y capital de trabajo.
+- Liquidez: liquidez corriente, prueba acida, capital de trabajo y OCF Ratio.
 - Endeudamiento: estructura de pasivos, apalancamiento y desapalancamiento.
 - Actividad: ventas, utilidad bruta, comparacion con INDEC, rotacion y flujo de efectivo.
 - Tablas resumen: indicadores anuales y comparacion entre pandemia y recesion.
@@ -26,8 +26,8 @@ Cada `git push` a `main` actualiza el sitio automáticamente.
 
 - `index.html`: pagina de inicio con acceso a todos los graficos.
 - `01_rentabilidad.html` a `11_flujo_efectivo.html`: graficos tematicos por indicador.
+- `13_ocf_ratio.html`: Operating Cash Flow Ratio con zona de peligro.
 - `t01_resumen_indicadores.html` y `t02_pandemia_vs_recesion.html`: tablas consolidadas.
-- `09_dashboard_integral.html`: vista dashboard complementaria.
 
 ## Fuentes
 
